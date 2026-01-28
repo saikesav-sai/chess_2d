@@ -1,0 +1,7 @@
+**/__pycache__
+**/chess_cli.egg-info
+**/kesav_chess_cli.egg-info
+/build
+/dist
+.env
+commands.txt
