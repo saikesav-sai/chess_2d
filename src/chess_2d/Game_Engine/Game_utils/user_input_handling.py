@@ -1,4 +1,4 @@
-from chess_cli.Game_Engine.Error_handler import set_error
+from chess_2d.Game_Engine.Error_handler import set_error
 
 def take_user_input(board:complex):
     print("Enter Move",end=" ")

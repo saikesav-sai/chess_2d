@@ -1,5 +1,5 @@
-from chess_cli.Game_Engine.static_variables import piece_ref
-from chess_cli.Game_Engine.Game_utils.common_functions import cell_to_index
+from chess_2d.Game_Engine.static_variables import piece_ref
+from chess_2d.Game_Engine.Game_utils.common_functions import cell_to_index
 
 def print_board(board:complex):
     cells=put_pieces_on_board(board.yellow,board.green)

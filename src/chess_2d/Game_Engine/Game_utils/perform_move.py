@@ -1,4 +1,4 @@
-from chess_cli.Game_Engine.Game_utils import common_functions
+from chess_2d.Game_Engine.Game_utils import common_functions
 
 def update_piece_on_board(board:compile,source_cell:str,distination_cell:str):
     # variables

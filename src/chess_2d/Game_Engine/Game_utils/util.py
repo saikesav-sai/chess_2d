@@ -1,5 +1,5 @@
-from chess_cli.Game_Engine.Game_utils import board_printing,user_input_handling,perform_move,common_functions
-from chess_cli.Game_Engine.Game_Rules.possible_position import Possible_Position
+from chess_2d.Game_Engine.Game_utils import board_printing,user_input_handling,perform_move,common_functions
+from chess_2d.Game_Engine.Game_Rules.possible_position import Possible_Position
 
 def print_board(board:complex):
     board_printing.print_board(board)

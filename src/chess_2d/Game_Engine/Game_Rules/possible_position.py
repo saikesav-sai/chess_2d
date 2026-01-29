@@ -1,5 +1,5 @@
-from chess_cli.Game_Engine import static_variables
-from chess_cli.Game_Engine.Game_utils import common_functions
+from chess_2d.Game_Engine import static_variables
+from chess_2d.Game_Engine.Game_utils import common_functions
 
 
 class Possible_Position:

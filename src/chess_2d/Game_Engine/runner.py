@@ -1,7 +1,7 @@
-from chess_cli.Game_Engine.Error_handler import set_error
-from chess_cli.Game_Engine.Game_Rules import move_validator,game_rules
-from chess_cli.Game_Engine.Game_utils import util,common_functions,board_printing
-from chess_cli.Game_Engine.Error_handler import error_printer
+from chess_2d.Game_Engine.Error_handler import set_error
+from chess_2d.Game_Engine.Game_Rules import move_validator,game_rules
+from chess_2d.Game_Engine.Game_utils import util,common_functions,board_printing
+from chess_2d.Game_Engine.Error_handler import error_printer
 
 def runner(board):
 

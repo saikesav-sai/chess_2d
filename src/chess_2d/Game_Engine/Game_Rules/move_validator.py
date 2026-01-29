@@ -1,7 +1,7 @@
 # legal moves, captures, checks, pins
-from chess_cli.Game_Engine import static_variables
-from chess_cli.Game_Engine.Game_Rules.possible_position import Possible_Position
-from chess_cli.Game_Engine.Game_utils import common_functions
+from chess_2d.Game_Engine import static_variables
+from chess_2d.Game_Engine.Game_Rules.possible_position import Possible_Position
+from chess_2d.Game_Engine.Game_utils import common_functions
 
 def is_legal_move(board,source_cell,distination_cell):
     player=board.current_player

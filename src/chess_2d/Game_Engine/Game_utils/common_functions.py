@@ -1,4 +1,4 @@
-from chess_cli.Game_Engine.static_variables import col_ref,row_ref
+from chess_2d.Game_Engine.static_variables import col_ref,row_ref
 
 def cell_to_index(text:str):
     text=list(text)

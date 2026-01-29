@@ -1,6 +1,6 @@
-from chess_cli.Game_Engine import static_variables
-from chess_cli.Game_Engine.Game_utils import common_functions
-from chess_cli.Game_Engine.Error_handler import set_error
+from chess_2d.Game_Engine import static_variables
+from chess_2d.Game_Engine.Game_utils import common_functions
+from chess_2d.Game_Engine.Error_handler import set_error
 
 class Board:
     yellow=static_variables.yellow
