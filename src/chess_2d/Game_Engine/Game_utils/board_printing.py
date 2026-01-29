@@ -63,3 +63,24 @@ def put_one_player_pieces(canvas,player_name,player_data):
     return
 
 
+def print_message(board,text:str):
+    canvas=board.canvas
+
+    canvas.update_idletasks()
+    w = canvas.winfo_width()
+    h = canvas.winfo_height()
+
+    canvas.delete("message") 
+    canvas.create_text(
+        w//2,
+        h//2,
+        text=text,
+        fill="black",
+        font=("Helvetica", 16, "bold"),
+        tags="message",
+        anchor="center"
+    )
+
+    # Remove the check message after 3 seconds
+    canvas.after(2000, lambda: canvas.delete("message"))
+    return
