@@ -12,7 +12,11 @@ class Board:
     row_ref=static_variables.row_ref
     current_player='yellow'
     error=set_error.Error()
-    state='palying'
+    running=True
+    main_window=None
+    canvas =None
+
+    selected_cell=None
     def __init__(self):
         for i in range(8):
            self.yellow['pawn'][i]=common_functions.index_to_cell(2,i)

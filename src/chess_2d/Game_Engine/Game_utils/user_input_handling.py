@@ -1,22 +1,57 @@
 from chess_2d.Game_Engine.Error_handler import set_error
+from chess_2d.Game_Engine.Game_utils import common_functions
+from chess_2d.Game_Engine import static_variables
+import tkinter as tk
 
 def take_user_input(board:complex):
-    print("Enter Move",end=" ")
-    user_input=input()
-    
-    if user_input=='q': # if the user inputed 'q' then raise a Abort error
-        board.error=set_error.Error(True,'Abort','User Aborted :(')
-        return input
-    
-    if not user_input: # if user entered no input raise input_error
-        board.error=set_error.Error(True,'input_error','Please Enter a Input')
-        return input
+    user_input=take_input_from_gui(board)
+    return user_input
 
-    user_input_list=user_input.split(" ")
-    if  not (len(user_input_list) == 2):# lenght other then 2 raise input_error
-        board.error=set_error.Error(True,'input_error','Please Enter a Input')
-        return input
+def on_close(board, done_var):
+    board.running = False
+    done_var.set(True)     
+    board.main_window.destroy()
+
+
+def take_input_from_gui(board:complex) -> str:
+    source_cell,distination_cell=None,None
+    done = tk.BooleanVar(value=False)
+    board.main_window.protocol(
+        "WM_DELETE_WINDOW",
+        lambda: on_close(board, done)
+    )
+
+    def get_cell(event):
+        col=event.x // static_variables.cell_size 
+        row=event.y // static_variables.cell_size +1
+        print(row,col)
+        if not (0 < row <= 8 and 0 <= col <= 8):
+            return
+        cell=common_functions.index_to_cell(row,col)
+        
+        if board.selected_cell is None:
+            nonlocal source_cell
+            source_cell=cell
+            board.selected_cell=cell
+            print(f"Selected source cell: {source_cell}")
+        else:
+            nonlocal distination_cell
+            distination_cell=cell
+            board.selected_cell=None
+            print(f"Selected distination cell: {distination_cell}")
+            done.set(True)
+
+        
+    board.main_window.bind("<Button-1>", lambda event: get_cell(event))
+    board.main_window.wait_variable(done)
+
+    if not board.running:
+        return None   # signal exit
     
-    if not board.error.flag: # no error raised
-        source,distination=map(str,user_input_list)
-        return str.lower(source),str.lower(distination)
+    board.main_window.unbind("<Button-1>")
+
+    
+
+    print(f"Selected move: {source_cell} to {distination_cell}")
+    return [source_cell, distination_cell]
+    

@@ -9,9 +9,10 @@ def cell_to_index(text:str):
 def index_to_cell(row:int,col:int):
     return col_ref[col]+str(row)
 
-def clrscr():
-    import os
-    os.system('cls' if os.name == 'nt' else 'clear')
+def clrscr(board:complex):
+    board.main_window.destroy()
+    return
+    
 
 def _piece_type_at_cell(cell:str,player:complex)-> str:
     type:str=None

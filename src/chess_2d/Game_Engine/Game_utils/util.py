@@ -19,6 +19,7 @@ def get_winner(board:complex):
 
 def update_current_player(board:complex):
     board.current_player=common_functions.change_current_player(board)
+    print("current player updated")
 
 
 

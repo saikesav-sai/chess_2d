@@ -1,34 +1,53 @@
 import tkinter as tk
 from chess_2d.Game_Engine.Game_utils import common_functions
+from chess_2d.Game_Engine import static_variables
 
 
-cell_size=80
-width,height=cell_size * 8 ,cell_size * 8  
-
+width,height=static_variables.cell_size * 8 ,static_variables.cell_size * 8  
 
 def print_board(board:complex):
     
-
-    main_window=tk.Tk()
-
-    main_window.title("Chess 2D - Sai Kesav")
-    main_window=create_board(main_window)
-    put_pieces_on_board(main_window,board.yellow,board.green)
-    main_window.mainloop()
-
-    return
-
-def put_pieces_on_board(main_window,yellow,green):
+    if board.main_window is None:
+        board.main_window=tk.Tk()
+        board.main_window.title("Chess 2D - Sai Kesav")
+        board.canvas=tk.Canvas(board.main_window, width=width, height=height)
+        board.canvas.pack()
+        
+    redraw_board(board)
+    return board.canvas
     
-    main_window.images=[]    
+
+def redraw_board(board:complex):
+    canvas=board.canvas
+    canvas.delete("all")
+    braw_base(canvas)
+    put_pieces_on_board(canvas, board.yellow, board.green)
+
+def braw_base(canvas):
+    
+    colors = ("#f0d9b5", "#b58863")
+
+    for r in range(8):
+        for c in range(8):
+            canvas.create_rectangle(
+                c*static_variables.cell_size,
+                r*static_variables.cell_size,
+                (c+1)*static_variables.cell_size,
+                (r+1)*static_variables.cell_size,
+                fill=colors[(r+c) % 2],
+                outline=""
+            )
+
+def put_pieces_on_board(canvas,yellow,green):
+    
+    canvas.images=[]    
 
     for player_name,player_data in (['green',green],['yellow',yellow]):
-        put_one_player_pieces(main_window,player_name,player_data)
+        put_one_player_pieces(canvas,player_name,player_data)
     return 
     
 
-def put_one_player_pieces(main_window,player_name,player_data):
-
+def put_one_player_pieces(canvas,player_name,player_data):
     file_name= "white_" if player_name == 'yellow' else "black_"
     folder_path="chess_2d\\img\\"+file_name
 
@@ -38,25 +57,9 @@ def put_one_player_pieces(main_window,player_name,player_data):
             row,col=common_functions.cell_to_index(pos)
 
             img=tk.PhotoImage(file=file_path)
-            main_window.images.append(img)  
-            main_window.create_image(col*cell_size, row*cell_size, image=img, anchor="nw")
+            canvas.images.append(img)  
+            canvas.create_image(col*static_variables.cell_size, row*static_variables.cell_size, image=img, anchor="nw")
 
     return
 
-def create_board(main_window):
-    cell_size=80
-    width,height=cell_size * 8 ,cell_size * 8
-    board=tk.Canvas(main_window, width=width, height=height)
 
-    colors = ["#f0d9b5", "#b58863"]
-
-    for r in range(8):
-        for c in range(8):
-            color = colors[(r+c)%2]
-            board.create_rectangle(
-                c*cell_size, r*cell_size,
-                (c+1)*cell_size, (r+1)*cell_size,
-                fill=color, outline=""
-            )
-    board.pack()
-    return board

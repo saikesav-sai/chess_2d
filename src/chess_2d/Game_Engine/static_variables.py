@@ -22,3 +22,4 @@ piece_ref={
             'king'   : 'KI',
             'queen'  : 'Q'
         }
+cell_size=80
