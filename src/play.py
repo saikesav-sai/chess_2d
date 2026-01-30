@@ -8,8 +8,7 @@ class chess:
     def __init__(self):
         board=build_board(self)
         print("----------------WELCOME TO CHESS --------------")
-        print("Input format (e.g., e2 e4)")
-        print("Press q to quit the game anytime")
+        print("Close the window anytime to exit the game :)")
         print("-----------------------------------------------")
         print("Made by - Sai Kesav")
         runner(board)

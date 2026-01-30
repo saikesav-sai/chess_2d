@@ -16,11 +16,17 @@ def print_board(board:complex):
     redraw_board(board)
     return board.canvas
     
+def show_restart_option(board:complex)-> bool:
+    from tkinter import messagebox
+    result = messagebox.askyesno("Game Over", "Do you want to restart the game?")
+    return result
+    
 
 def redraw_board(board:complex):
     canvas=board.canvas
     canvas.delete("all")
     braw_base(canvas)
+    update_current_player_title(board)
     put_pieces_on_board(canvas, board.yellow, board.green)
 
 def braw_base(canvas):
@@ -83,4 +89,8 @@ def print_message(board,text:str):
 
     # Remove the check message after 3 seconds
     canvas.after(2000, lambda: canvas.delete("message"))
+    return
+
+def update_current_player_title(board:complex):
+    board.main_window.title(f"Chess 2D - Sai Kesav | Current Player: {board.current_player.capitalize()}")
     return

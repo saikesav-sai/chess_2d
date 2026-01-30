@@ -15,7 +15,15 @@ def perform_move(board):
             board_printing.print_message(board,text=f"Check for {board.current_player} player")
     if game_rules.is_check_mate(board):
         board_printing.print_message(board,text=f" {util.get_winner(board)} player WON")
-        return
+        
+        if board_printing.show_restart_option(board):
+            board=common_functions.reset_board_pieces(board)
+            board_printing.redraw_board(board)
+        else:
+            board.running=False
+            board.main_window.destroy()
+            return
+        
     
     input=util.take_user_input(board)
     if input is None:

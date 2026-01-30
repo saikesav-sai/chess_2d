@@ -1,4 +1,6 @@
 from chess_2d.Game_Engine.static_variables import col_ref,row_ref
+from chess_2d.Game_Engine import static_variables
+import copy
 
 def cell_to_index(text:str):
     text=list(text)
@@ -12,7 +14,17 @@ def index_to_cell(row:int,col:int):
 def clrscr(board:complex):
     board.main_window.destroy()
     return
-    
+
+def reset_board_pieces(board:complex):
+    board.yellow={}
+    board.green={}
+    board.yellow=copy.deepcopy(static_variables.yellow)
+    board.green=copy.deepcopy(static_variables.green)
+    board.yellow_possible_positions={}
+    board.green_possible_positions={}
+    board.current_player='yellow'
+    board.selected_cell=None
+    return board
 
 def _piece_type_at_cell(cell:str,player:complex)-> str:
     type:str=None
