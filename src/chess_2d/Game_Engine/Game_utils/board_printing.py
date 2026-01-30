@@ -1,6 +1,7 @@
 import tkinter as tk
 from chess_2d.Game_Engine.Game_utils import common_functions
 from chess_2d.Game_Engine import static_variables
+from importlib.resources import files
 
 
 width,height=static_variables.cell_size * 8 ,static_variables.cell_size * 8  
@@ -55,11 +56,12 @@ def put_pieces_on_board(canvas,yellow,green):
 
 def put_one_player_pieces(canvas,player_name,player_data):
     file_name= "white_" if player_name == 'yellow' else "black_"
-    folder_path="chess_2d\\img\\"+file_name
+    folder_path="img\\"+file_name
 
     for type,pieces in player_data.items():
         for pos in pieces:
             file_path=folder_path+(type+'.png')
+            file_path=files("chess_2d").joinpath(file_path)
             row,col=common_functions.cell_to_index(pos)
 
             img=tk.PhotoImage(file=file_path)

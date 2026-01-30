@@ -18,13 +18,13 @@ def perform_move(board):
 
         board_printing.print_message(board,text=f" {util.get_winner(board)} player WON")
         if not util.is_restart_board(board):
-            return 
+            exit(0) 
         
     
     input=util.take_user_input(board)
     if input is None:
         print("Game exited")
-        return
+        exit(0)
 
     source_cell,destination_cell=map(str,input)
     
