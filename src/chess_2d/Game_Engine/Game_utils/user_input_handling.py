@@ -24,7 +24,6 @@ def take_input_from_gui(board:complex) -> str:
     def get_cell(event):
         col=event.x // static_variables.cell_size 
         row=event.y // static_variables.cell_size +1
-        print(row,col)
         if not (0 < row <= 8 and 0 <= col <= 8):
             return
         cell=common_functions.index_to_cell(row,col)
@@ -33,12 +32,10 @@ def take_input_from_gui(board:complex) -> str:
             nonlocal source_cell
             source_cell=cell
             board.selected_cell=cell
-            print(f"Selected source cell: {source_cell}")
         else:
             nonlocal distination_cell
             distination_cell=cell
             board.selected_cell=None
-            print(f"Selected distination cell: {distination_cell}")
             done.set(True)
 
         
@@ -52,6 +49,5 @@ def take_input_from_gui(board:complex) -> str:
 
     
 
-    print(f"Selected move: {source_cell} to {distination_cell}")
     return [source_cell, distination_cell]
     

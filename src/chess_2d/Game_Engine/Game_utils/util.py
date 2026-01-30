@@ -12,6 +12,7 @@ def take_user_input(board:complex):
 def update_piece_position(board:compile,source_cell:str,distination_cell:str):
     perform_move.update_piece_on_board(board,source_cell,distination_cell)
     Possible_Position(board) # updating possible positions after every move
+    update_current_player(board)
 
 
 def get_winner(board:complex):
@@ -19,9 +20,14 @@ def get_winner(board:complex):
 
 def update_current_player(board:complex):
     board.current_player=common_functions.change_current_player(board)
-    print("current player updated")
 
-
-
-
+def is_restart_board(board:complex)-> bool:
+    if board_printing.show_restart_option(board):
+            board=common_functions.reset_board_pieces(board)
+            board_printing.redraw_board(board)
+            return True
+    else:
+        board.running=False
+        board.main_window.destroy()
+        return False
 

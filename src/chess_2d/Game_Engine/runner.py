@@ -13,31 +13,23 @@ def perform_move(board):
 
     if game_rules.is_check(board):
             board_printing.print_message(board,text=f"Check for {board.current_player} player")
+
     if game_rules.is_check_mate(board):
+
         board_printing.print_message(board,text=f" {util.get_winner(board)} player WON")
-        
-        if board_printing.show_restart_option(board):
-            board=common_functions.reset_board_pieces(board)
-            board_printing.redraw_board(board)
-        else:
-            board.running=False
-            board.main_window.destroy()
-            return
+        if not util.is_restart_board(board):
+            return 
         
     
     input=util.take_user_input(board)
     if input is None:
         print("Game exited")
         return
-    if board.error.flag and board.error.type in ['Abort','input_error']: # Error in input
-        error_printer.Print_message(board, board.error)
-        return 
 
     source_cell,destination_cell=map(str,input)
     
     if move_validator.is_legal_move(board,source_cell,destination_cell):
         util.update_piece_position(board,source_cell,destination_cell)
-        util.update_current_player(board)
         board_printing.redraw_board(board)
     else:
         error_printer.Print_message(board, set_error.Error(False, 'illegal_move', f"illegal move"))
