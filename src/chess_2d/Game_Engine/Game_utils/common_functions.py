@@ -1,6 +1,8 @@
-from chess_2d.Game_Engine.static_variables import col_ref,row_ref
-from chess_2d.Game_Engine import static_variables
 import copy
+
+from chess_2d.Game_Engine import static_variables
+from chess_2d.Game_Engine.static_variables import col_ref, row_ref
+
 
 def cell_to_index(text:str):
     text=list(text)
@@ -16,13 +18,13 @@ def clrscr(board:complex):
     return
 
 def reset_board_pieces(board:complex):
-    board.yellow={}
-    board.green={}
-    board.yellow=copy.deepcopy(static_variables.yellow)
-    board.green=copy.deepcopy(static_variables.green)
-    board.yellow_possible_positions={}
-    board.green_possible_positions={}
-    board.current_player='yellow'
+    board.white={}
+    board.black={}
+    board.white=copy.deepcopy(static_variables.white)
+    board.black=copy.deepcopy(static_variables.black)
+    board.white_possible_positions={}
+    board.black_possible_positions={}
+    board.current_player='white'
     board.selected_cell=None
     return board
 
@@ -45,7 +47,7 @@ def _piece_index_at_cel(cell:str,player:complex)-> int:
     return index if index != -1 else -1
 
 def is_cell_occupied(cell:str,board:complex)->bool:
-    for player_name in ['yellow','green']:
+    for player_name in ['white','black']:
         player_data=getattr(board,player_name)
         for _,pieces in player_data.items():
             if cell in pieces:
@@ -53,7 +55,7 @@ def is_cell_occupied(cell:str,board:complex)->bool:
     return False
 
 def remove_piece_at_cell(cell:str,board:complex):
-    for player_name in ['yellow','green']:
+    for player_name in ['white','black']:
         player_data=getattr(board,player_name)
         for type,pieces in player_data.items():
             if cell in pieces:
@@ -66,7 +68,7 @@ def remove_possible_position_data(type:str,index:int,possible_position_date:dict
 
 
 def change_current_player(board:complex):
-    if board.current_player == 'yellow':
-        return 'green'
+    if board.current_player == 'white':
+        return 'black'
     else:
-        return 'yellow'
+        return 'white'

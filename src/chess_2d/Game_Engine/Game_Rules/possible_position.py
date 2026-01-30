@@ -14,7 +14,7 @@ class Possible_Position:
     def __init__(self,board:complex):
 
         self.current_player_name=board.current_player
-        self.opponent_player_name='green' if board.current_player == 'yellow' else 'yellow'
+        self.opponent_player_name='black' if board.current_player == 'white' else 'white'
         self.current_player_data=getattr(board,self.current_player_name)
         self.opponent_player_data=getattr(board,self.opponent_player_name)
 
@@ -76,8 +76,8 @@ class Possible_Position:
         opp = self._cells_of(self.opponent_player_data)
 
         row, col = self._to_index(cell)
-        direction = 1 if self.current_player_name == 'yellow' else -1
-        start_row = 1 if self.current_player_name == 'yellow' else 6
+        direction = 1 if self.current_player_name == 'white' else -1
+        start_row = 1 if self.current_player_name == 'white' else 6
 
         # one step forward
         one_r = row + direction

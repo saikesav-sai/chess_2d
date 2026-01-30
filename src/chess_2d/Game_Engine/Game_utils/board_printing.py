@@ -1,8 +1,8 @@
 import tkinter as tk
-from chess_2d.Game_Engine.Game_utils import common_functions
-from chess_2d.Game_Engine import static_variables
 from importlib.resources import files
 
+from chess_2d.Game_Engine import static_variables
+from chess_2d.Game_Engine.Game_utils import common_functions
 
 width,height=static_variables.cell_size * 8 ,static_variables.cell_size * 8  
 
@@ -28,7 +28,7 @@ def redraw_board(board:complex):
     canvas.delete("all")
     braw_base(canvas)
     update_current_player_title(board)
-    put_pieces_on_board(canvas, board.yellow, board.green)
+    put_pieces_on_board(canvas, board.white, board.black)
 
 def braw_base(canvas):
     
@@ -45,17 +45,17 @@ def braw_base(canvas):
                 outline=""
             )
 
-def put_pieces_on_board(canvas,yellow,green):
+def put_pieces_on_board(canvas,white,black):
     
     canvas.images=[]    
 
-    for player_name,player_data in (['green',green],['yellow',yellow]):
+    for player_name,player_data in (['black',black],['white',white]):
         put_one_player_pieces(canvas,player_name,player_data)
     return 
     
 
 def put_one_player_pieces(canvas,player_name,player_data):
-    file_name= "white_" if player_name == 'yellow' else "black_"
+    file_name= "white_" if player_name == 'white' else "black_"
     folder_path="img\\"+file_name
 
     for type,pieces in player_data.items():

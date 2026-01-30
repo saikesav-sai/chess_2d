@@ -3,7 +3,7 @@
 def is_check(board):
     # variables
     current_player_name = board.current_player
-    oppenent_player_name = 'green' if current_player_name == 'yellow' else 'yellow'
+    oppenent_player_name = 'black' if current_player_name == 'white' else 'white'
     current_player_data= getattr(board,current_player_name)
 
     opponent_player_possible_positions= getattr(board,oppenent_player_name+'_possible_positions')
@@ -21,7 +21,7 @@ def is_in_check(king_pos,possible_positions):
     return False
 
 def is_check_mate(board):
-    oppenent_player_name = 'green' if board.current_player == 'yellow' else 'yellow'
+    oppenent_player_name = 'black' if board.current_player == 'white' else 'white'
     oppenent_player_data= getattr(board,oppenent_player_name)
     
     opponent_player_king_pos=oppenent_player_data['king'][0]
