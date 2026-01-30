@@ -1,6 +1,6 @@
 **/__pycache__
-**/chess_cli.egg-info
-**/kesav_chess_cli.egg-info
+**/chess_cli.2d-info
+**/kesav_chess_2d.egg-info
 /build
 /dist
 .env
